@@ -6,9 +6,8 @@ const App = () => {
     <div className="wrapper">
       <h1>Play Number Guessing Game!</h1>
       <Link to="/settings">
-        <button className="btn"
+        <button className="btn btn-primary"
                 type="button"
-                style={{ backgroundColor: "#0070e7" }}
         >
           Press to play!
         </button>

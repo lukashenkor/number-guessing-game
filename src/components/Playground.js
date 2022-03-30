@@ -2,12 +2,13 @@ import { useState} from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
-const Playground = (props) => {
+const Playground = () => {
   const location = useLocation()
-  const { lowLevel, highLevel, attemptCount, guessNumber } = location.state
+  const { minNumber, maxNumber, attemptCount, guessNumber } = location.state
   const [attemptsLeft, setAttemptsLeft] = useState(attemptCount)
   const [printedNumber, setPrintedNumber] = useState('');
   const navigator = useNavigate();
+  const [hint, setHint] = useState('');
 
   const makeGuess = () => {
     console.log('guessNumber: ', guessNumber)
@@ -15,6 +16,12 @@ const Playground = (props) => {
       return
     }
     setPrintedNumber('');
+
+    if (printedNumber < minNumber || printedNumber > maxNumber) {
+      setHint('Number is out of range')
+      return
+    }
+
     if (printedNumber === guessNumber) {
       console.log("Угадал!")
       navigator('/congrats', { state: {guessNumber: guessNumber}})
@@ -24,6 +31,13 @@ const Playground = (props) => {
     } else {
       console.log("Не угадал")
       setAttemptsLeft(attemptsLeft - 1)
+
+      if (printedNumber > guessNumber) {
+        setHint('Guess number is lower')
+      } else {
+        setHint('Guess number is higher')
+      }
+
     }
   }
 
@@ -48,7 +62,7 @@ const Playground = (props) => {
         <button type="button" className="btn">Go back</button>
       </Link>
       <h2>Let's Play</h2>
-      <h3>Guess a number between {lowLevel} and {highLevel}</h3>
+      <h3>Guess a number between {minNumber} and {maxNumber}</h3>
       <label>
         <input type="text" value={printedNumber} onChange={ (e => setPrintedNumber(parseInputNumber(e))) } onKeyDown={(e) => onKeyDownHandler(e)}/>
       </label>
@@ -58,6 +72,7 @@ const Playground = (props) => {
       >
         Make a guess
       </button>
+      <h4>{ hint }</h4>
     </div>
   );
 };

@@ -6,6 +6,7 @@
     padding: 40px 20px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     text-align: center;
+    fontFamily: "sans-serif";
 }
 
 .wrapper {
@@ -16,7 +17,7 @@
 }
 
 .btn {
-    border: 1px solid #8a8a8a;
+    border: 1px solid rgba(138, 138, 138, 0.25);
     background-color: #000000;
     color: #fff;
     border-radius: 3px;
@@ -27,7 +28,8 @@
 }
 
 .btn:hover {
-    background-color: #282828;
+    filter: brightness(90%);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .btn-success {

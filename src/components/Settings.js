@@ -7,8 +7,8 @@ function randomInteger(lowLevel, highLevel) {
 }
 
 const Settings = () => {
-  const [lowLevel, setLowLevel] = useState(0);
-  const [highLevel, setHighLevel] = useState(10);
+  const [minNumber, setMinNumber] = useState(0);
+  const [maxNumber, setMaxNumber] = useState(10);
   const [attemptCount, setAttemptCount] = useState(5);
 
   // parse valid input number from event else return empty string
@@ -33,11 +33,11 @@ const Settings = () => {
       <div className="wrapper-settings">
         <label>
           Low level:
-          <input type="text" value={ lowLevel } onChange={ (e => setLowLevel(parseInputNumber(e))) }/>
+          <input type="text" value={ minNumber } onChange={ (e => setMinNumber(parseInputNumber(e))) }/>
         </label>
         <label>
           High level:
-          <input type="text" value={ highLevel } onChange={ (e => setHighLevel(parseInputNumber(e))) }/>
+          <input type="text" value={ maxNumber } onChange={ (e => setMaxNumber(parseInputNumber(e))) }/>
         </label>
         <label>
           Attempts count:
@@ -46,10 +46,10 @@ const Settings = () => {
       </div>
       <Link to={ '/playground' }
             state={{
-              lowLevel: lowLevel,
-              highLevel: highLevel,
+              minNumber: minNumber,
+              maxNumber: maxNumber,
               attemptCount: attemptCount,
-              guessNumber: randomInteger(lowLevel, highLevel)
+              guessNumber: randomInteger(minNumber, maxNumber)
       }}
       >
         <button className="btn btn-success">Play</button>
